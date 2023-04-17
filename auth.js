@@ -27,7 +27,6 @@ function authorize() {
     const state = generateRandomString(16)
     const authUrl = 'https://accounts.spotify.com/authorize'
 
-    console.log('redirectUrl', redirectUrl)
     return browser.identity.launchWebAuthFlow({
         interactive: true,
         url: `${authUrl}?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUrl)}&scope=${encodeURIComponent(scopes.join(' '))}&state=${encodeURIComponent(state)}`

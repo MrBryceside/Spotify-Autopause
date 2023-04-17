@@ -6,7 +6,6 @@ async function getProfile(accessToken) {
     })
 
     const response = await fetch(request)
-    console.log('response', response)
     if (response.status !== 200)
         throw new Error('Token validation error')
 
@@ -19,7 +18,6 @@ async function getProfile(accessToken) {
 
 async function isCurrentlyPlaying() {
 	const spotifyData = await browser.storage.local.get()
-	console.log('spotifyData', spotifyData)
 	if (!spotifyData.accessToken)
 		throw new Error('Not authenticated')
 
@@ -30,13 +28,12 @@ async function isCurrentlyPlaying() {
     })
 
     const response = await fetch(request)
-    console.log('response', response)
-    if (response.status !== 204)
+    if (response.status !== 200 && response.status !== 204)
         return false
 
-    console.log('response', response)
+    const res = await response.json()
 
-    return true
+    return res.is_playing ?? false
 }
 
 async function changePlayback(action) {
@@ -54,7 +51,7 @@ async function changePlayback(action) {
     })
 
     const response = await fetch(request)
-    if (response.status !== 204)
+    if (response.status !== 204 && response.status !== 204)
         return false
 
     return true

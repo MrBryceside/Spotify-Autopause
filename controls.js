@@ -9,10 +9,10 @@ async function init() {
     playing.is = await isCurrentlyPlaying()
 
     const data = await browser.storage.local.get()
-    console.log('data autoPaused?', data)
     playing.autoPaused = data.autoPaused ?? false
+    //console.log('State check', playing.is, data.autoPaused)
 
-    scanTabs()
+    return scanTabs()
 }
 
 function handleUpdate(tabId, changeInfo, tab) {

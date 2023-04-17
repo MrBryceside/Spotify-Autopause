@@ -14,7 +14,7 @@
     }
   },
   "background": {
-    "scripts": ["index.js", "controls.js", "util.js", "spotify.js", "auth.js"]
+    "scripts": ["controls.js", "util.js", "spotify.js", "auth.js", "index.js"]
   },
   "permissions": [
     "*://developer.mozilla.org/*",
